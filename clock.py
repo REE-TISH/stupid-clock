@@ -3,6 +3,7 @@ import time
 from PIL import Image,ImageTk
 from tkinter import ttk
 import pyttsx3
+import threading
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -24,7 +25,10 @@ def check_button():
     global check 
     check = True
 
-
+def speak(word):
+    for i in range(3):
+     engine.say(word)
+     engine.runAndWait()
 
 def setAlarm(time):
       if check:  
@@ -33,9 +37,10 @@ def setAlarm(time):
         A_or_P = AM_combo.get()
         give_time = f"{H}:{M}:00: {A_or_P}"
         print(give_time,time)
-        if give_time == time:
-            engine.say("hello")
-            engine.runAndWait()
+        i = 0
+        if give_time == time and i == 0:
+            i += 1
+            threading.Thread(target=speak,args=("wake up",)).start()
 
 
 
