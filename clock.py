@@ -38,10 +38,8 @@ def setAlarm(time):
         A_or_P = AM_combo.get()
         give_time = f"{H}:{M}:00: {A_or_P}"
         print(give_time,time)
-        i = 0
-        if give_time == time and i == 0:
-            i += 1
-            threading.Thread(target=speak,args=("wake up",)).start()
+        if give_time == time:    
+            threading.Thread(target=speak,args=("wake up ,you idiot",)).start()
 
 
 
