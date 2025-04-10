@@ -5,9 +5,7 @@ from tkinter import ttk
 import pyttsx3
 import threading
 
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+
 
 check = False
 
@@ -26,6 +24,9 @@ def check_button():
     check = True
 
 def speak(word):
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[1].id)   
     for i in range(3):
      engine.say(word)
      engine.runAndWait()
